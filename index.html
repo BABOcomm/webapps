@@ -13,6 +13,9 @@
     :root {
       --BA-roze: #EA5297;
       --BA-groen: #86BC25;
+
+      /* GROOTTE VAN DE ICONEN (Pas dit getal aan om alle iconen te vergroten of verkleinen) */
+      --icon-size: 36px;
     }
 
     * {
@@ -46,23 +49,23 @@
     }
 
     /* OVERLAY / BACKDROP */
-div.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 997;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
-}
+    div.backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 997;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
+    }
 
-div.backdrop.open {
-  opacity: 1;
-  pointer-events: auto;
-}
+    div.backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
     /* .open-button opent het panel op de rechterkant */
     div.open-button {
@@ -157,7 +160,6 @@ div.backdrop.open {
       width: 100%;
     }
 
-    /* Oplossing voor <a> links om de 80% breedte te behouden */
     .webapp-container > a {
       width: 80%;
       text-decoration: none;
@@ -166,22 +168,19 @@ div.backdrop.open {
     }
 
     .webapp-block {
-      width: 80%;
-      padding: 25px 20px;
+      width: 100%;
+      padding: 18px 25px;
       border: 2px solid #333;
       border-radius: 8px;
       background-color: #ffffff;
       box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-      text-align: center;
       font-weight: 600;
       font-size: 1.2em;
       box-sizing: border-box;
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
       cursor: pointer;
-    }
-
-    .webapp-container > a .webapp-block {
-      width: 100%;
+      display: flex;
+      align-items: center;
     }
 
     .webapp-block:hover {
@@ -189,6 +188,81 @@ div.backdrop.open {
       border-color: var(--BA-roze);
       box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
     }
+
+    /* CONTAINER VOOR HET ICOON */
+    .webapp-icon {
+      width: var(--icon-size);
+      height: var(--icon-size);
+      min-width: var(--icon-size);
+      margin-right: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    /* TEKST IN HET MIDDEN VAN HET RESTERENDE BLOK */
+    .webapp-text {
+      flex-grow: 1;
+      text-align: center;
+      margin-right: var(--icon-size); /* Houdt de tekst exact gecentreerd t.o.v. het icoon */
+    }
+
+    /*
+      GOOGLE SVG ICONEN (50% grijs: #808080)
+      Afkomstig van Simple Icons: https://simpleicons.org/?q=google
+    */
+    .webapp-block[data-tool="chat"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M1.637 0C.733 0 0 .733 0 1.637v16.5c0 .904.733 1.636 1.637 1.636h3.955v3.323c0 .804.97 1.207 1.539.638l3.963-3.96h11.27c.903 0 1.636-.733 1.636-1.637V5.592L18.408 0Zm3.955 5.592h12.816v8.59H8.455l-2.863 2.863Z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="docs"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M14.727 6.727H14V0H4.91c-.905 0-1.637.732-1.637 1.636v20.728c0 .904.732 1.636 1.636 1.636h14.182c.904 0 1.636-.732 1.636-1.636V6.727h-6zm-.545 10.455H7.09v-1.364h7.09v1.364zm2.727-3.273H7.091v-1.364h9.818v1.364zm0-3.273H7.091V9.273h9.818v1.363zM14.727 6h6l-6-6v6z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="maps"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799zM8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007zM5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035zM14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003zM9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="meet"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M5.53 2.13 0 7.75h5.53zm.398 0v5.62h7.608v3.65l5.47-4.45c-.014-1.22.031-2.25-.025-3.46-.148-1.09-1.287-1.47-2.236-1.36zM23.1 4.32c-.802.295-1.358.995-2.047 1.49-2.506 2.05-4.982 4.12-7.468 6.19 3.025 2.59 6.04 5.18 9.065 7.76 1.218.671 1.428-.814 1.328-1.64v-13a.828.828 0 0 0-.877-.825zM.038 8.15v7.7h5.53v-7.7zm13.577 8.1H6.008v5.62c3.864-.006 7.737.011 11.58-.009 1.02-.07 1.618-1.12 1.468-2.07v-2.51l-5.47-4.68v3.65zm-13.577 0c.02 1.44-.041 2.88.033 4.31.162.948 1.158 1.43 2.047 1.31h3.464v-5.62z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="drive"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="forms"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M14.727 6h6l-6-6v6zm0 .727H14V0H4.91c-.905 0-1.637.732-1.637 1.636v20.728c0 .904.732 1.636 1.636 1.636h14.182c.904 0 1.636-.732 1.636-1.636V6.727h-6zM7.91 17.318a.819.819 0 1 1 .001-1.638.819.819 0 0 1 0 1.638zm0-3.273a.819.819 0 1 1 .001-1.637.819.819 0 0 1 0 1.637zm0-3.272a.819.819 0 1 1 .001-1.638.819.819 0 0 1 0 1.638zm9 6.409h-6.818v-1.364h6.818v1.364zm0-3.273h-6.818v-1.364h6.818v1.364zm0-3.273h-6.818V9.273h6.818v1.363z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="chrome"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zm13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l.002.001h-.002l-5.344 9.257c.206.01.413.016.621.016 6.627 0 12-5.373 12-12 0-1.54-.29-3.011-.818-4.364zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728Z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="gemini"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="sheets"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="slides"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M16.09 15.273H7.91v-4.637h8.18v4.637zm1.728-8.523h2.91v15.614c0 .904-.733 1.636-1.637 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.068v6.75h3.841zm-.363 2.523H6.545v7.363h10.91V9.273zm-2.728-5.979V6h6.001l-6-6v3.294z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="calendar"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="classroom"] .webapp-icon {
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg role=%22img%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath fill=%22%23808080%22 d=%22M1.6367 1.6367C.7322 1.6367 0 2.369 0 3.2734v17.4532c0 .9045.7322 1.6367 1.6367 1.6367h20.7266c.9045 0 1.6367-.7322 1.6367-1.6367V3.2734c0-.9045-.7322-1.6367-1.6367-1.6367H1.6367zm.545 2.1817h19.6367v16.3632h-2.7266v-1.0898h-4.9102v1.0898h-12V3.8184zM12 8.1816c-.9046 0-1.6367.7322-1.6367 1.6368 0 .9045.7321 1.6367 1.6367 1.6367.9046 0 1.6367-.7322 1.6367-1.6367 0-.9046-.7321-1.6368-1.6367-1.6368zm-4.3633 1.9102c-.6773 0-1.2285.5493-1.2285 1.2266 0 .6772.5512 1.2265 1.2285 1.2265.6773 0 1.2266-.5493 1.2266-1.2265 0-.6773-.5493-1.2266-1.2266-1.2266zm8.7266 0c-.6773 0-1.2266.5493-1.2266 1.2266 0 .6772.5512 1.2265 1.2266 1.2265.6773 0 1.2285-.5493 1.2285-1.2265 0-.6773-.5512-1.2266-1.2285-1.2266zM12 12.5449c-1.179 0-2.4128.4012-3.1484 1.0059-.384-.1198-.8043-.1875-1.2149-.1875-1.3136 0-2.7285.695-2.7285 1.5586v.8965h14.1836v-.8965c0-.8637-1.4149-1.5586-2.7285-1.5586-.4106 0-.831.0677-1.2149.1875-.7356-.6047-1.9694-1.0059-3.1484-1.0059Z%22/%3E%3C/svg%3E');
+    }
+
+    .webapp-block[data-tool="webapp"] .webapp-icon {
+background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg viewBox=%220 0 100 100%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Ctext x=%2250%22 y=%2250%22 font-family=%22Arial, sans-serif%22 font-size=%2260%22 font-weight=%22bold%22 fill=%22%23808080%22 text-anchor=%22middle%22 dominant-baseline=%22central%22%3EA%3C/text%3E%3C/svg%3E');
+}
 
     /* ANIMATIE */
     .slideInLeft {
@@ -248,11 +322,40 @@ div.backdrop.open {
     <h1>Webapps van BA Botaniek</h1>
 
     <div class="webapp-container">
-      <a href="http://aanvragen.babotaniek.be"><div class="webapp-block">AANVRAGENGENERATOR VAN BA BOTANIEK</div></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdedjlTClDO6qW39Cw6WcWmvDR2wdgecxiiiD2RFyqQC6gZ8w/viewform"><div class="webapp-block">ZET 1 EVENT IN DE PERSONEELSKALENDER</div></a>
-      <a href="https://docs.google.com/spreadsheets/d/1ZaR5AkuwBKgQvjoadvcPXTN3TOinTIn7GqkeH2-ewk8/edit"><div class="webapp-block">BULKUPLOAD EVENTS NAAR ONZE KALENDERS</div></a>
-      <a href="https://script.google.com/a/macros/babotaniek.be/s/AKfycbyEtTaoAC9nOSxpdv8soWuKGRFU9lp9pNtTf1vtcakj-qPy62rRQ5trYK_m_MFa9yf3/exec"><div class="webapp-block">GENEREER AFDRUKBARE LESTABELLEN</div></a>
-      <a href="https://script.google.com/a/macros/babotaniek.be/s/AKfycbymm_G-7_teDGlIZB6SiJk1vMWlq-jc1giiewL97KXMN1kZ6JH80yzxgi0FaWzWJx6S/exec"><div class="webapp-block">GOOGLE DRIVE BULK RENAME TOOL</div></a>
+      <a href="http://aanvragen.babotaniek.be">
+        <div class="webapp-block" data-tool="docs">
+          <div class="webapp-icon"></div>
+          <span class="webapp-text">AANVRAGENGENERATOR VAN BA BOTANIEK</span>
+        </div>
+      </a>
+
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdedjlTClDO6qW39Cw6WcWmvDR2wdgecxiiiD2RFyqQC6gZ8w/viewform">
+        <div class="webapp-block" data-tool="calendar">
+          <div class="webapp-icon"></div>
+          <span class="webapp-text">ZET 1 EVENT IN DE PERSONEELSKALENDER</span>
+        </div>
+      </a>
+
+      <a href="https://docs.google.com/spreadsheets/d/1ZaR5AkuwBKgQvjoadvcPXTN3TOinTIn7GqkeH2-ewk8/edit">
+        <div class="webapp-block" data-tool="calendar">
+          <div class="webapp-icon"></div>
+          <span class="webapp-text">BULKUPLOAD EVENTS NAAR ONZE KALENDERS</span>
+        </div>
+      </a>
+
+      <a href="https://script.google.com/a/macros/babotaniek.be/s/AKfycbyEtTaoAC9nOSxpdv8soWuKGRFU9lp9pNtTf1vtcakj-qPy62rRQ5trYK_m_MFa9yf3/exec">
+        <div class="webapp-block" data-tool="docs">
+          <div class="webapp-icon"></div>
+          <span class="webapp-text">GENEREER AFDRUKBARE LESTABELLEN</span>
+        </div>
+      </a>
+
+      <a href="https://script.google.com/a/macros/babotaniek.be/s/AKfycbymm_G-7_teDGlIZB6SiJk1vMWlq-jc1giiewL97KXMN1kZ6JH80yzxgi0FaWzWJx6S/exec">
+        <div class="webapp-block" data-tool="drive">
+          <div class="webapp-icon"></div>
+          <span class="webapp-text">GOOGLE DRIVE BULK RENAME TOOL</span>
+        </div>
+      </a>
     </div>
   </article>
 
