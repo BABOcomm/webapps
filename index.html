@@ -1,2 +1,245 @@
-<h1>Test Landingspagina BA Botaniek</h1>
-<img src="test.png" alt="alternatetext">
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <title>Webapps van BA Botaniek</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="https://babocomm.github.io/webapps/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --BA-roze: #EA5297;
+      --BA-groen: #86BC25;
+    }
+
+    * {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      font-size: 18px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #f9F9F9;
+    }
+
+    header {
+      padding: 25px 50px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #999;
+    }
+
+    div.logobox {
+      width: 202px;
+      height: 48px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url("https://babocomm.github.io/webapps/BABotaniekLight.png");
+    }
+
+    /* .open-button opent het panel op de rechterkant */
+    div.open-button {
+      position: fixed;
+      z-index: 999;
+      top: 23px;
+      right: 0px;
+      width: 50px;
+      height: 50px;
+      background-image: url("https://babocomm.github.io/webapps/menu-icon1.png");
+      background-size: cover;
+      transition: background-image 0.3s ease-in-out;
+      opacity: 0.5;
+    }
+
+    div.open-button.open {
+      background-image: url("https://babocomm.github.io/webapps/menu-icon2.png");
+    }
+
+    div.open-button:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    div.panel {
+      position: fixed;
+      z-index: 998;
+      top: 0; right: 0; bottom: 0;
+      width: 800px;
+      height: 100%;
+      max-width: 90%;
+      background-color: #f3f3f3;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0px 0px 10px 0px rgba(127,127,127,0.5);
+    }
+
+    div.panel.open {
+      transform: translateX(0);
+    }
+
+    .panel .panel-content {
+      padding: 90px 20px 20px;
+    }
+
+    article {
+      margin: 0px auto;
+      padding: 25px 50px 25px;
+      max-width: 1200px;
+    }
+
+    hr {
+      height: 1px;
+      width: 100%;
+      border: none;
+      border-top: 1px dashed #999;
+      background-color: transparent;
+    }
+
+    a, a:visited {
+      text-decoration: underline;
+      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: var(--BA-roze);
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 3em;
+      font-weight: 400;
+      padding-bottom: 20px;
+    }
+
+    /* SPECIFIEKE STYLING VOOR DE WEBAPP BLOKKEN */
+    .webapp-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin: 40px 0;
+      width: 100%;
+    }
+
+    /* Oplossing voor <a> links om de 80% breedte te behouden */
+    .webapp-container > a {
+      width: 80%;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .webapp-block {
+      width: 80%;
+      padding: 25px 20px;
+      border: 2px solid #333;
+      border-radius: 8px;
+      background-color: #ffffff;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.2em;
+      box-sizing: border-box;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .webapp-container > a .webapp-block {
+      width: 100%;
+    }
+
+    .webapp-block:hover {
+      transform: translateY(-3px);
+      border-color: var(--BA-roze);
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ANIMATIE */
+    .slideInLeft {
+      -webkit-animation-name: slideInLeft;
+      animation-name: slideInLeft;
+      -webkit-animation-duration: 3s;
+      animation-duration: 3s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+
+    @-webkit-keyframes slideInLeft {
+      0% {
+        -webkit-transform: translateX(-500%) scale(1.5);
+        transform: translateX(-500%) scale(1.5);
+        visibility: visible;
+      }
+      100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      0% {
+        -webkit-transform: translateX(-500%) scale(1.5);
+        transform: translateX(-500%) scale(1.5);
+        visibility: visible;
+      }
+      100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <div class="logobox"></div>
+    </div>
+  </header>
+
+  <nav> <!-- SIDEPANEL -->
+    <div class="open-button slideInLeft" onclick="openPanel()"></div>
+    <div class="panel">
+      <div class="panel-content">
+        <p>Vragen over de webapps?</p>
+        <p>Stuur een e-mail naar <a href="mailto:dirk.ploegaerts@babotaniek.be">dirk.ploegaerts@babotaniek.be</a></p>
+      </div>
+    </div>
+  </nav>
+
+  <article>
+    <h1>Webapps van BA Botaniek</h1>
+
+    <div class="webapp-container">
+      <a href="http://aanvragen.babotaniek.be"><div class="webapp-block">AANVRAGENGENERATOR VAN BA BOTANIEK</div></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdedjlTClDO6qW39Cw6WcWmvDR2wdgecxiiiD2RFyqQC6gZ8w/viewform"><div class="webapp-block">ZET 1 EVENT IN DE PERSONEELSKALENDER</div></a>
+      <a href="https://docs.google.com/spreadsheets/d/1ZaR5AkuwBKgQvjoadvcPXTN3TOinTIn7GqkeH2-ewk8/edit"><div class="webapp-block">BULKUPLOAD EVENTS NAAR ONZE KALENDERS</div></a>
+      <a href="http://lestabellen.babotaniek.be"><div class="webapp-block">GENEREER AFDRUKBARE LESTABELLEN</div></a>
+    </div>
+  </article>
+
+  <script>
+    function openPanel() {
+      document.querySelector('.panel').classList.toggle('open');
+      document.querySelector('.open-button').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
