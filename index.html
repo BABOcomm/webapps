@@ -45,6 +45,25 @@
       background-image: url("BABotaniekLight.png");
     }
 
+    /* OVERLAY / BACKDROP */
+div.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 997;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+div.backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
     /* .open-button opent het panel op de rechterkant */
     div.open-button {
       position: fixed;
@@ -215,7 +234,8 @@
   </header>
 
   <nav> <!-- SIDEPANEL -->
-    <div class="open-button slideInLeft" onclick="openPanel()"></div>
+    <div class="open-button slideInLeft" onclick="togglePanel()"></div>
+    <div class="backdrop" onclick="closePanel()"></div>
     <div class="panel">
       <div class="panel-content">
         <p>Vragen over de webapps?</p>
@@ -237,10 +257,24 @@
   </article>
 
   <script>
-    function openPanel() {
+    function togglePanel() {
       document.querySelector('.panel').classList.toggle('open');
       document.querySelector('.open-button').classList.toggle('open');
+      document.querySelector('.backdrop').classList.toggle('open');
     }
+
+    function closePanel() {
+      document.querySelector('.panel').classList.remove('open');
+      document.querySelector('.open-button').classList.remove('open');
+      document.querySelector('.backdrop').classList.remove('open');
+    }
+
+    // Sluit het zijpaneel wanneer de Escape-toets wordt ingedrukt
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closePanel();
+      }
+    });
   </script>
 </body>
 </html>
